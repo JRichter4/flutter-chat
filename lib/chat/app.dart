@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 
-class FriendlyChat extends StatelessWidget {
+class FlutterChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
