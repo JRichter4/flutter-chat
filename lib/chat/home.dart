@@ -6,7 +6,8 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => new _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
+  bool _isComposing = false;
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = new TextEditingController();
 
@@ -51,15 +52,22 @@ class _ChatScreenState extends State<ChatScreen> {
               decoration: new InputDecoration.collapsed(
                 hintText: "Send a Message"
               ),
+              onChanged: (String text) {
+                setState(() => _isComposing = text.length > 0);
+              },
               autofocus: true,
               maxLines: 9999, // TODO: Theoretical Limit (is there another solution)
+              // See GitHub Issue https://github.com/flutter/flutter/issues/10006
             ),
           ),
         ),
         new Container(
           child: new IconButton(
             icon: new Icon(Icons.send),
-            onPressed: () => _handleMessageSubmit(_textController.text),
+            color: Theme.of(context).accentColor,
+            onPressed: _isComposing ?
+              () => _handleMessageSubmit(_textController.text) :
+              null,
           ),
         ),
       ]),
@@ -68,7 +76,24 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _handleMessageSubmit(String text) {
     _textController.clear();
-    ChatMessage message = new ChatMessage(text);
+    setState(() => _isComposing = false);
+    ChatMessage message = new ChatMessage(
+      messageText: text,
+      animationController: new AnimationController(
+        vsync: this,
+        duration: new Duration(milliseconds: 1000),
+      ),
+    );
     setState(() => _messages.insert(0, message));
+    message.animationController.forward();
+  }
+
+  // Good Practice to Dispose Animations
+  @override
+  void dispose() {
+    for(ChatMessage message in _messages) {
+      message.animationController.dispose();
+      super.dispose();
+    }
   }
 }
