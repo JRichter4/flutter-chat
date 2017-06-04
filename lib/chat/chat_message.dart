@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
-const String _name = "Joey";
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class ChatMessage extends StatelessWidget {
-  final String messageText;
-  final AnimationController animationController;
+  final DataSnapshot snapshot;
+  final Animation animation;
 
   ChatMessage({
-    @required this.messageText,
-    this.animationController,
+    @required this.snapshot,
+    this.animation,
   });
 
   @override
   Widget build(BuildContext context) {
     return new SizeTransition(
       sizeFactor: new CurvedAnimation(
-        parent: animationController,
+        parent: animation,
         curve: Curves.elasticOut,
       ),
       axisAlignment: 0.0,
@@ -26,16 +26,19 @@ class ChatMessage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             new Container(
-              child: new CircleAvatar(child: new Text(_name[0])),
+              child: new GoogleUserCircleAvatar(snapshot.value['senderPhotoUrl']),
               margin: new EdgeInsets.only(right: 15.0),
             ),
             new Flexible(child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text(_name, style: Theme.of(context).textTheme.subhead),
+                new Text(
+                  snapshot.value['senderName'],
+                  style: Theme.of(context).textTheme.subhead
+                ),
                 new Container(
                   margin: new EdgeInsets.only(top: 5.0),
-                  child: new Text(messageText),
+                  child: new Text(snapshot.value['messageText']),
                 ),
               ],
             )),

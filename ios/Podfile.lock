@@ -88,7 +88,7 @@ DEPENDENCIES:
   - firebase_auth (from `/Users/Joey/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.0.2+1/ios`)
   - firebase_database (from `/Users/Joey/.pub-cache/hosted/pub.dartlang.org/firebase_database-0.0.4/ios`)
   - firebase_storage (from `/Users/Joey/.pub-cache/hosted/pub.dartlang.org/firebase_storage-0.0.2/ios`)
-  - Flutter (from `/Users/Joey/Programming/Flutter/flutter/bin/cache/artifacts/engine/ios`)
+  - Flutter (from `/Users/Joey/Programming/Flutter/flutter/bin/cache/artifacts/engine/ios-release`)
   - google_sign_in (from `/Users/Joey/.pub-cache/hosted/pub.dartlang.org/google_sign_in-0.0.2/ios`)
   - image_picker (from `/Users/Joey/.pub-cache/hosted/pub.dartlang.org/image_picker-0.0.2+2/ios`)
 
@@ -102,7 +102,7 @@ EXTERNAL SOURCES:
   firebase_storage:
     :path: /Users/Joey/.pub-cache/hosted/pub.dartlang.org/firebase_storage-0.0.2/ios
   Flutter:
-    :path: /Users/Joey/Programming/Flutter/flutter/bin/cache/artifacts/engine/ios
+    :path: /Users/Joey/Programming/Flutter/flutter/bin/cache/artifacts/engine/ios-release
   google_sign_in:
     :path: /Users/Joey/.pub-cache/hosted/pub.dartlang.org/google_sign_in-0.0.2/ios
   image_picker:
