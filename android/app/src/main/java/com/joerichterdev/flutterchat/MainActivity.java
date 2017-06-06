@@ -1,4 +1,4 @@
-package com.yourcompany.flutter_chat;
+package com.joerichterdev.flutterchat;
 
 import android.os.Bundle;
 
